@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      style="
+        color: #c8202f;
+        text-align: center;
+        font-size: 0.975rem;
+        line-height: 22px;
+        font-weight: 900;
+      "
+    >
+      <b>LIMITED STOCK!</b>
+      <span style="color: black; font-weight: 300"> Cart reserved for: </span>
+      <span class="countdown">09:59</span>
+
+      <script>
+        function countdown() {
+          document.querySelectorAll(".countdown").forEach((x) => {
+            let time = x.innerHTML;
+            let timeArray = time.split(":");
+            let seconds = timeToSeconds(timeArray);
+            if (seconds == "") {
+              x.innerHTML = "00:00";
+              return;
+            }
+            x.innerHTML = secondsToTime(--seconds);
+          });
+
+          setTimeout(countdown, 1000);
+        }
+
+        function timeToSeconds(timeArray) {
+          var minutes = timeArray[0] * 60 + timeArray[0] * 1;
+          var seconds = minutes * 60 + timeArray[1] * 1;
+          return seconds;
+        }
+
+        function secondsToTime(secs) {
+          //var hours = Math.floor(secs / (60 * 60));
+          hours = 1;
+          var divisor_for_minutes = secs % (60 * 60);
+          var minutes = Math.floor(divisor_for_minutes / 60);
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          var divisor_for_seconds = divisor_for_minutes % 60;
+          var seconds = Math.ceil(divisor_for_seconds);
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+          return minutes + ":" + seconds;
+        }
+
+        countdown();
+      </script>
+    </div>
+  </body>
+</html>
